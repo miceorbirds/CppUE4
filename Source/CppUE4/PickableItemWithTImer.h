@@ -8,6 +8,8 @@
 
 
 class UTextRenderComponent;
+class UBoxComponent;
+class UStaticMeshComponent;
 struct FTimerHandle;
 
 UCLASS()
@@ -19,7 +21,6 @@ public:
 	// Sets default values for this actor's properties
 	APickableItemWithTImer();
 
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -28,13 +29,25 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(VisibleAnywhere)
+		UStaticMeshComponent* StaticMesh;
+
 	//How long, in seconds, the countdown will run
 	UPROPERTY(EditAnywhere, Category="Timer")
 	int32 CountdownTime;
 
+	UPROPERTY(VisibleAnywhere)
 	UTextRenderComponent* CountdownText;
+
 	void UpdateTimerDisplay();
 	void AdvanceTimer();
 	void CountdownHasFinished();
 	FTimerHandle CountdownTimerHandle;
+
+	UPROPERTY(VisibleAnywhere)
+	UBoxComponent* CollisionBox;
+
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+		int32 UsePickableItem();
+
 };
