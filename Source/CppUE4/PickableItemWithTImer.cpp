@@ -46,7 +46,8 @@ void APickableItemWithTImer::Tick(float DeltaTime)
 
 void APickableItemWithTImer::UpdateTimerDisplay()
 {
-    CountdownText->SetText(FString::FromInt(FMath::Max(CountdownTime, 0)));
+    Timer = FTimespan::FromSeconds(CountdownTime);
+    CountdownText->SetText(FText::AsTimespan(Timer,0));
 }
 
 void APickableItemWithTImer::AdvanceTimer()
@@ -65,6 +66,6 @@ void APickableItemWithTImer::AdvanceTimer()
 void APickableItemWithTImer::CountdownHasFinished()
 {
     //Change to a special readout
-    CountdownText->SetText(TEXT("00::00"));
+    CountdownText->SetText(TEXT("Bye"));
     Destroy();
 }

@@ -43,6 +43,7 @@ public:
 	void AdvanceTimer();
 	void CountdownHasFinished();
 	FTimerHandle CountdownTimerHandle;
+	FTimespan Timer;
 
 	UPROPERTY(VisibleAnywhere)
 	UBoxComponent* CollisionBox;
